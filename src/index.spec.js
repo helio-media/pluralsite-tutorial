@@ -8,13 +8,13 @@ describe('Our first test', () => {
 });
 
 describe('index.html', () => {
-   it('should say Helio World!', (done) => {
+   it('should have h1 that says users!', (done) => {
       const { JSDOM } = jsdom;
       JSDOM.fromFile('./src/index.html', null)
          .then((dom) => {
             //console.log(.body.textContent.trim());
             const h1 = dom.window.document.getElementsByTagName('h1')[0];
-            expect(h1.innerHTML).to.equal("Helio World!");
+            expect(h1.innerHTML).to.equal("Users");
             done();
          })
          //calling done with the 'err' ensures the test fails as the promise was broken
