@@ -14,7 +14,7 @@ describe('index.html', () => {
       JSDOM.fromFile(path.join(__dirname, '../src/index.html'), null)
          .then((dom) => {
             const h1 = dom.getElementsByTagName('h1')[0];
-            expect(h1.innerHTML).to.equal("Helio World");
+            expect(h1.innerHTML).to.equal("foo bar");
          })
          .catch(function(){});//handle the unhandled promise rejection error
       //because Mocha is asynchronour, this tells mocha that its safe to
