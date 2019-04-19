@@ -1,6 +1,5 @@
 import {expect} from 'chai';
-import jsdom from 'jsdom';
-import path from 'path';
+const jsdom = require('jsdom');
 
 describe('Our first test', () => {
    it('should pass', () => {
@@ -9,16 +8,16 @@ describe('Our first test', () => {
 });
 
 describe('index.html', () => {
-   it('should say hello', (done) => {
+   it('should say Helio World!', (done) => {
       const { JSDOM } = jsdom;
-      JSDOM.fromFile(path.join(__dirname, '../src/index.html'), null)
+      JSDOM.fromFile('./src/index.html', null)
          .then((dom) => {
-            const h1 = dom.getElementsByTagName('h1')[0];
-            expect(h1.innerHTML).to.equal("foo bar");
+            //console.log(.body.textContent.trim());
+            const h1 = dom.window.document.getElementsByTagName('h1')[0];
+            expect(h1.innerHTML).to.equal("Helio World!");
+            done();
          })
-         .catch(function(){});//handle the unhandled promise rejection error
-      //because Mocha is asynchronour, this tells mocha that its safe to
-      //evaluate whether or not your test has passed
-      done();
+         //calling done with the 'err' ensures the test fails as the promise was broken
+         .catch(function(err){done(err)});
    });
 });
